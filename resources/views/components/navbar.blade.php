@@ -33,8 +33,11 @@
                         href="{{ route('contact') }}">CONTACTO</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-light {{ request()->routeIs('terms') ? 'active fw-bold border-bottom' : '' }}"
-                        href="{{ route('terms') }}">TÉRMINOS DE USO</a>
+                    <a @class([
+                        'nav-link',
+                        'link-light',
+                        'active fw-bold border-bottom' => request()->routeIs('terms')
+                    ]) href="{{ route('terms') }}">TÉRMINOS DE USO</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -45,8 +48,8 @@
                     <ul class="dropdown-menu pages-decoration">
                         <li><a <a @class([
                             'dropdown-item',
-                            'item-catalogo'
-                            {{-- 'active' => request()->route('categoria')==null --}}
+                            'item-catalogo',
+                            //'active' => request()->route('categoria')==null
                         ]) href="{{ route('catalog') }}">VER TODO</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -54,43 +57,43 @@
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Audio'
+                            'active' => request()->route('categoria') == 'Audio',
                         ]) href="{{ route('catalog', 'Audio') }}">AUDIO</a>
                         </li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Instrumentos'
+                            'active' => request()->route('categoria') == 'Instrumentos',
                         ]) href="{{ route('catalog', 'Instrumentos') }}">INSTRUMENTOS
                                 MUSICALES</a></li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Fotografia'
+                            'active' => request()->route('categoria') == 'Fotografia',
                         ]) href="{{ route('catalog', 'Fotografia') }}">FOTOGRAFIA</a>
                         </li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Iluminacion'
+                            'active' => request()->route('categoria') == 'Iluminacion',
                         ]) href="{{ route('catalog', 'Iluminacion') }}">ILUMINACION Y
                                 ESTUDIO</a></li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Bolsos'
+                            'active' => request()->route('categoria') == 'Bolsos',
                         ]) href="{{ route('catalog', 'Bolsos') }}">BOLSOS Y
                                 MOCHILAS</a></li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Soportes'
+                            'active' => request()->route('categoria') == 'Soportes',
                         ]) href="{{ route('catalog', 'Soportes') }}">TRIPODES
                                 Y SOPORTES</a></li>
                         <li><a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria') == 'Outlet'
+                            'active' => request()->route('categoria') == 'Outlet',
                         ]) href="{{ route('catalog', 'Outlet') }}">OUTLET</a>
                         </li>
                     </ul>

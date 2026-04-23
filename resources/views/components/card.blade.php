@@ -1,18 +1,15 @@
-@props(['card'])
+{{--  @props(['card']) --}}
 
 <div class="card product-card h-100 m-1">
     {{-- Badge de descuento con z-index alto para estar sobre el link invisible --}}
-    @if($card['on_sale'])
+    @if ($card['on_sale'])
         <div class="badge-producto" style="z-index: 3;">
             -{{ $card['discount'] }}%
         </div>
     @endif
 
     {{-- Imagen: El CSS se encarga de que todas midan lo mismo --}}
-    <img src="{{ asset($card['image']) }}"
-         class="card-img-top"
-         alt="Imagen de {{ $card['title'] }}"
-         loading="lazy">
+    <img src="{{ asset($card['image']) }}" class="card-img-top" alt="Imagen de {{ $card['title'] }}" loading="lazy">
 
     <div class="card-body">
         {{-- El CSS limitará esto a 2 líneas y mantendrá la altura --}}
@@ -21,7 +18,7 @@
 
         {{-- Este div mt-auto es el que empuja todo hacia abajo --}}
         <div class="mt-auto">
-            @if($card['on_sale'])
+            @if ($card['on_sale'])
                 <p class="precio-descuento">
                     ${{ number_format($card['final_price'], 2, ',', '.') }}
                     <span class="descuento-label badge bg-success">{{ $card['discount'] }}% OFF</span>

@@ -24,7 +24,7 @@
                     <ul class="list-unstyled text-center text-md-start ps-md-3">
                         <li><i class="bi bi-envelope me-2"></i> <strong>Correo:</strong> info@soundwavestore.com</li>
                         <li><i class="bi bi-telephone me-2"></i> <strong>Teléfono:</strong> [379-XXXXXXX]</li>
-                        <li><i class="bi bi-geo-alt me-2"></i> <strong>Dirección:</strong> Corrientes, Argentina</li>
+                        <li><i class="bi bi-geo-alt me-2"></i> <strong>Dirección:</strong> 9 de Julio 1449 (Corrientes, Argentina)</li>
                     </ul>
 
                     <h3 class="text-center border-bottom py-4">Horarios de Atención</h3>

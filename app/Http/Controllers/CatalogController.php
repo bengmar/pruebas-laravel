@@ -309,7 +309,7 @@ class CatalogController extends Controller
         }
 
 
-        // Es buena práctica eliminar la referencia después de un loop con &
+        // Limpieza de la variable que ya no se va a utilizar
         unset($product);
 
         //Obtención de un nombre acorde de las categorías para mostrar en la vista
@@ -325,7 +325,7 @@ class CatalogController extends Controller
 
         $tituloCategoria = $nombresCategorias[$categoria] ?? 'Nuestro Catálogo';
 
-        // 3. Enviamos el array ya procesado a la vista
+        // Envio del array ya procesado a la vista
         $collection = collect($productsRaw);
 
 
@@ -334,7 +334,7 @@ class CatalogController extends Controller
         } else {
             $products = $collection;
         }
-
+        
         return view('pages.catalog', compact('products','tituloCategoria', 'categoria'));
     }
 
