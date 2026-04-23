@@ -46,7 +46,7 @@
                         <li><a <a @class([
                             'dropdown-item',
                             'item-catalogo',
-                            'active' => request()->route('categoria')==null,
+                            //'active' => request()->route('categoria')==null,
                         ]) href="{{ route('catalog') }}">VER TODO</a></li>
                         <li>
                             <hr class="dropdown-divider">
