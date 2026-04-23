@@ -209,3 +209,12 @@ footer {
 .nav-link:hover {
     border-bottom: 1px solid gray;
 }
+
+/*Decoración de la opción activad del menú desplegable (catálogo)*/
+.dropdown-item.active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #fff !important;
+    border-radius: 6px; /* Bordes redondeados */
+    margin: 0 5px; /* Un pequeño margen para que no toque los bordes */
+    width: calc(100% - 10px); /* Ajuste del ancho por el margen */
+}

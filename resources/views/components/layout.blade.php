@@ -13,7 +13,7 @@
 
 <body class="fondo d-flex flex-column min-vh-100">
     <x-header />
-    <x-navbar />
+    <x-navbar/>
     <main class="flex-grow-1">
         {{ $slot }}
     </main>
