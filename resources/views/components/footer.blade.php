@@ -65,7 +65,7 @@
                     <a class="link-secondary text-decoration-none" href="#">1149382277</a>
                 </li>
                 <li>
-                    <a class="link-secondary text-decoration-none" href="#">3795372819</a>
+                    <a class="link-secondary text-decoration-none" href="https://wa.me/5493795372819">3795372819</a>
                 </li>
                 <li>
                     <a class="link-secondary text-decoration-none"
