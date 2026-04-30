@@ -334,7 +334,7 @@ class CatalogController extends Controller
         } else {
             $products = $collection;
         }
-        
+
         return view('pages.catalog', compact('products','tituloCategoria', 'categoria'));
     }
 

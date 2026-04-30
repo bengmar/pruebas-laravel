@@ -1,31 +1,62 @@
 <x-layout>
     <x-slot name="title">Principal</x-slot>
-    <div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        {{-- imagenes de 1920 x 720 píxeles --}}
-      <img src="{{ asset('images/carro1.webp')}}" class="d-block w-100 h-100" alt=carrusel1">
+
+    {{-- Carrusel Adaptativo --}}
+    <div id="carouselExampleIndicators" class="carousel slide mb-3 shadow-sm custom-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('images/carro1.webp') }}" class="d-block w-100" alt="carrusel1">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/carro2.webp') }}" class="d-block w-100" alt="carrusel2">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('images/carro3.webp') }}" class="d-block w-100" alt="carrusel3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-item">
-      <img src="{{ asset('images/carro2.webp')}}" class="d-block w-100 h-100" alt="carrusel2">
-    </div>
-    <div class="carousel-item">
-      <img src="{{ asset('images/carro3.webp')}}" class="d-block w-100 h-100" alt="carrusel3">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+
+    {{-- Secciones de Productos --}}
+    @php
+        $secciones = [
+            ['titulo' => 'Novedades', 'icon' => 'bi-stars', 'datos' => $novedades],
+            ['titulo' => 'Ofertas imperdibles', 'icon' => 'bi-tag-fill', 'datos' => $ofertas_home],
+            ['titulo' => 'Los más vistos', 'icon' => 'bi-graph-up', 'datos' => $mas_vistos],
+        ];
+    @endphp
+
+    @foreach ($secciones as $seccion)
+        <div class="container pt-2 pb-5">
+            {{-- Título de sección adaptativo: quitamos text-white y border-secondary --}}
+            <h3 class="mb-4 text-center color-adaptativo border-bottom border-ui-adaptativa pb-3 text-uppercase fw-bold" style="letter-spacing: 1px;">
+                <i class="bi {{ $seccion['icon'] }} texto-rojo me-2"></i> {{ $seccion['titulo'] }}
+            </h3>
+            <div class="row justify-content-center g-4 px-2">
+                @foreach ($seccion['datos'] as $card)
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center">
+                        <x-card :card="$card" />
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
 
 </x-layout>
