@@ -49,23 +49,38 @@
                         CATÁLOGO
                     </a>
                     <ul class="dropdown-menu pages-decoration">
-                        <li><a @class([
-                            'dropdown-item',
-                            'item-catalogo',
-                        ]) href="{{ route('catalog') }}">VER TODO</a></li>
-                        <li><hr class="dropdown-divider "></li>
+                        <li><a @class(['dropdown-item', 'item-catalogo']) href="{{ route('catalog') }}">VER TODO</a></li>
+                        <li>
+                            <hr class="dropdown-divider ">
+                        </li>
                         {{-- Categorías --}}
                         @php
-                            $categorias = ['Audio', 'Instrumentos', 'Fotografia', 'Iluminacion', 'Bolsos', 'Soportes', 'Outlet'];
+                            $categorias = [
+                                'Audio',
+                                'Instrumentos',
+                                'Fotografia',
+                                'Iluminacion',
+                                'Bolsos',
+                                'Soportes',
+                                'Outlet',
+                            ];
                         @endphp
-                        @foreach($categorias as $cat)
+                        @foreach ($categorias as $cat)
                             <li>
                                 <a @class([
                                     'dropdown-item',
                                     'item-catalogo',
                                     'item-catalogo-active' => request()->route('categoria') == $cat,
                                 ]) href="{{ route('catalog', $cat) }}">
-                                    {{ strtoupper($cat == 'Soportes' ? 'Trípodes y Soportes' : ($cat == 'Iluminacion' ? 'Iluminación y Estudio' : $cat)) }}
+                                {{-- Opcional a operador ternario anidado --}}
+                                    {{ strtoupper(
+                                        match ($cat) {
+                                            'Soportes' => 'TRÍPODES y Soportes',
+                                            'Iluminacion' => 'ILUMINACIÓN y Estudio',
+                                            'Fotografia' => 'FOTOGRAFÍA',
+                                            default => $cat,
+                                        },
+                                    ) }}
                                 </a>
                             </li>
                         @endforeach
