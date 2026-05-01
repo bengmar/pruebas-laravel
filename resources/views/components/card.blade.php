@@ -20,21 +20,23 @@
             <div class="price-container">
                 @if ($card['on_sale'])
                     <div class="d-flex align-items-baseline gap-2">
-                        <p class="precio-descuento">
+                        <p class="precio-descuento mb-0">
                             ${{ number_format($card['final_price'], 2, ',', '.') }}
                         </p>
-                        {{-- Eliminé bg-success para usar un estilo que combine mejor con el dorado --}}
                         <span class="descuento-tag">{{ $card['discount'] }}% OFF</span>
                     </div>
-                    <p class="precio-original">
+                    <p class="precio-original mb-0">
                         ${{ number_format($card['price'], 2, ',', '.') }}
                     </p>
                 @else
-                    <p class="precio">
-                        ${{ number_format($card['price'], 2, ',', '.') }}
-                    </p>
+                    <div class="d-flex align-items-baseline">
+                        <p class="precio mb-0">
+                            ${{ number_format($card['price'], 2, ',', '.') }}
+                        </p>
+                    </div>
                 @endif
             </div>
+
             <p class="cuotas">
                 {{ $card['installments'] }} x ${{ number_format($card['installment_price'], 2, ',', '.') }}
                 <span>sin interés</span>

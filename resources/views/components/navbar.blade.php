@@ -53,7 +53,7 @@
                             'dropdown-item',
                             'item-catalogo',
                         ]) href="{{ route('catalog') }}">VER TODO</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li><hr class="dropdown-divider "></li>
                         {{-- Categorías --}}
                         @php
                             $categorias = ['Audio', 'Instrumentos', 'Fotografia', 'Iluminacion', 'Bolsos', 'Soportes', 'Outlet'];
@@ -63,7 +63,7 @@
                                 <a @class([
                                     'dropdown-item',
                                     'item-catalogo',
-                                    'active' => request()->route('categoria') == $cat,
+                                    'item-catalogo-active' => request()->route('categoria') == $cat,
                                 ]) href="{{ route('catalog', $cat) }}">
                                     {{ strtoupper($cat == 'Soportes' ? 'Trípodes y Soportes' : ($cat == 'Iluminacion' ? 'Iluminación y Estudio' : $cat)) }}
                                 </a>
