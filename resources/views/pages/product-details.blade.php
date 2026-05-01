@@ -20,13 +20,13 @@
                     <div class="col-2">
                         <div class="d-flex flex-column gap-2">
                             <div class="thumb-container active">
-                                <img src="{{ asset('images/piano-casio.webp') }}" class="img-fluid rounded">
+                                <img src="{{ asset('images/piano-casio.webp') }}" class="img-fluid">
                             </div>
                             <div class="thumb-container">
-                                <img src="{{ asset('images/microfono-1.webp') }}" class="img-fluid rounded">
+                                <img src="{{ asset('images/microfono-1.webp') }}" class="img-fluid">
                             </div>
                             <div class="thumb-container">
-                                <img src="{{ asset('images/microfono-2.webp') }}" class="img-fluid rounded">
+                                <img src="{{ asset('images/microfono-2.webp') }}" class="img-fluid">
                             </div>
                         </div>
                     </div>
