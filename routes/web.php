@@ -20,7 +20,7 @@ Route::controller(PrincipalController::class)->group(function(){
 //Rutas de CatalogController
 Route::controller(CatalogController::class)->group(function(){
     Route::get('/catalogo/{categoria?}', 'index')->name('catalog');
-    Route::get('/producto-detalles', 'details')->name('product-details');
+    Route::get('/producto-detalles/{id}', 'details')->name('product-details');
 });
 
 //Rutas de AuthController

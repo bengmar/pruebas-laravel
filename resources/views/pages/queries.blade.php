@@ -10,6 +10,7 @@
             </p>
 
             <form action="">
+                @csrf
                 <div class="row">
                     <div class="col-12 col-md-6 mb-3">
                         <label for="nombre" class="form-label color-adaptativo">Nombre *</label>
