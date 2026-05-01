@@ -244,6 +244,11 @@ body {
     border-bottom: 3px solid var(--color-dos) !important;
 }
 
+.custom-tab:hover {
+    opacity: 1;
+    color: var(--color-dos)!important;
+}
+
 
 .custom-table { color: var(--color-texto); }
 .custom-table th { background-color: rgba(0, 0, 0, 0.1); }
