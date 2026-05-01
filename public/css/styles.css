@@ -240,8 +240,10 @@ body {
 .custom-tab.active {
     opacity: 1;
     color: var(--color-dos) !important;
+    background-color: var(--color-cuatro)!important;
     border-bottom: 3px solid var(--color-dos) !important;
 }
+
 
 .custom-table { color: var(--color-texto); }
 .custom-table th { background-color: rgba(0, 0, 0, 0.1); }
@@ -310,9 +312,27 @@ body {
     left: 0;
 }
 
-/* Inversión del botón hamburguesa en modo claro */
-.light .navbar-toggler {
+/* ADAPCTACIÓN DEL MENÚ HAMBURGUESA */
+/* 1. Estado por defecto (MODO OSCURO) */
+.navbar-toggler {
+    /* Tu variable aquí es blanca */
+    border-color: var(--border-ui);
+}
+
+.navbar-toggler-icon {
+    /* Forzamos que las líneas sean blancas por defecto */
     filter: invert(1);
+}
+
+/* 2. Estado cuando se activa la clase .light (MODO CLARO) */
+.light .navbar-toggler {
+    /* Tu variable aquí es negra */
+    border-color: var(--border-ui);
+}
+
+.light .navbar-toggler-icon {
+    /* Quitamos la inversión para que vuelvan a ser negras */
+    filter: invert(0);
 }
 
 /* CARDS */
@@ -555,6 +575,7 @@ body {
 .custom-table td {
     color: var(--color-texto-muted);
     border-color: var(--border-ui) !important;
+    background-color: var(--color-cuatro)!important;
 }
 
 

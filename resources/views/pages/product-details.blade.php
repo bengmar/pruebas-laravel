@@ -74,7 +74,7 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="product-details-container p-4 p-md-5 shadow-sm">
-                    <ul class="nav nav-tabs border-0 mb-4" id="productTab" role="tablist">
+                    <ul class="nav border-0 mb-4" id="productTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active custom-tab" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">Especificaciones Técnicas</button>
                         </li>
