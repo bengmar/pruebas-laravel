@@ -68,9 +68,6 @@ body {
     background-color: var(--color-cuatro);
 }
 
-.nav-link:hover {
-    border-bottom: 1px solid var(--color-texto-muted);
-}
 
 .form-control, .form-select {
     background-color: var(--color-bg-input);
