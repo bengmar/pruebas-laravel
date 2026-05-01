@@ -565,6 +565,10 @@ body {
     text-decoration: none;
     background-color: var(--color-cuatro);
 }
+.light .social-btn-contact{
+    background-color: var(--color-uno);
+    border-color: var(--color-dos);
+}
 
 .social-btn-contact:hover {
     background-color: var(--color-dos);
