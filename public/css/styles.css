@@ -4,19 +4,25 @@
 
 :root {
     /* Fondos y Superficies */
-    --color-uno: #1A1A1A;      /* Fondo Body */
-    --color-cuatro: #1C1C24;   /* Superficie (Cards/Nav) */
+    --color-uno: #1A1A1A;
+    /* Fondo Body */
+    --color-cuatro: #1C1C24;
+    /* Superficie (Cards/Nav) */
     --color-bg-input: #121212;
 
     /* Acentos */
-    --color-dos: #d4a017;      /* Dorado Principal */
-    --color-cinco: #E8C547;    /* Dorado Brillante (Hover) */
-    --color-seis: #C0392B;     /* Rojo Alerta */
+    --color-dos: #d4a017;
+    /* Dorado Principal */
+    --color-cinco: #E8C547;
+    /* Dorado Brillante (Hover) */
+    --color-seis: #C0392B;
+    /* Rojo Alerta */
 
     /* Tipografía y Estados */
     --color-texto: #FFFFFF;
     --color-texto-muted: #A0A0A0;
-    --color-tres: #F5F5F0;     /* Blanco roto / Detalle */
+    --color-tres: #F5F5F0;
+    /* Blanco roto / Detalle */
 
     /* UI Elements */
     --border-ui: rgba(245, 245, 240, 0.1);
@@ -42,6 +48,24 @@
 /* ==========================================================================
    ESTILOS BASE
    ========================================================================== */
+/* Estilo del botón de tema claro/oscuro */
+#theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.hidden {
+    display: none;
+}
 
 * {
     margin: 0;
@@ -56,29 +80,37 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.fondo { background: var(--color-uno); }
-.texto-rojo { color: var(--color-seis) !important; }
+.fondo {
+    background: var(--color-uno);
+}
+
+.texto-rojo {
+    color: var(--color-seis) !important;
+}
 
 /* ==========================================================================
    COMPONENTES GLOBALES (Botones, Inputs, Nav)
    ========================================================================== */
 
-.dropdown-menu, .titulos, footer {
+.dropdown-menu,
+.titulos,
+footer {
     color: var(--color-texto);
     background-color: var(--color-cuatro);
 }
 
-.item-catalogo{
+.item-catalogo {
     color: var(--color-texto);
     background-color: var(--color-uno);
 }
 
 /* Corrección del desplegable */
-.item-catalogo-active{
+.item-catalogo-active {
     color: var(--color-dos);
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     background-color: var(--color-bg-input);
     color: var(--color-texto) !important;
     border: 1px solid var(--border-ui);
@@ -90,11 +122,15 @@ body {
 }
 
 /* Botón Brand (Dorado) */
-.btn-brand, .btn-agregar, .btn-confirm-order, .btn-add-cart {
+.btn-brand,
+.btn-agregar,
+.btn-confirm-order,
+.btn-add-cart {
     display: block;
     width: 100%;
     background-color: var(--color-dos);
-    color: var(--color-uno); /* Contraste oscuro sobre dorado */
+    color: var(--color-uno);
+    /* Contraste oscuro sobre dorado */
     font-weight: 700;
     border: none;
     border-radius: 6px;
@@ -106,7 +142,10 @@ body {
     transition: all 0.2s ease;
 }
 
-.btn-brand:hover, .btn-agregar:hover, .btn-confirm-order:hover, .btn-add-cart:hover {
+.btn-brand:hover,
+.btn-agregar:hover,
+.btn-confirm-order:hover,
+.btn-add-cart:hover {
     background-color: var(--color-cinco);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--shadow-ui);
@@ -171,10 +210,30 @@ body {
 }
 
 /* Precios */
-.precio { color: var(--color-dos); font-size: 1.5rem; font-weight: 700; }
-.precio-descuento { color: var(--color-seis); font-size: 1.5rem; font-weight: 700; }
-.precio-original { color: var(--color-texto-muted); text-decoration: line-through; font-size: 0.95rem; opacity: 0.7; }
-.envio { color: #28a745; font-size: 0.8rem; font-weight: 600; }
+.precio {
+    color: var(--color-dos);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.precio-descuento {
+    color: var(--color-seis);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.precio-original {
+    color: var(--color-texto-muted);
+    text-decoration: line-through;
+    font-size: 0.95rem;
+    opacity: 0.7;
+}
+
+.envio {
+    color: #28a745;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 /* ==========================================================================
    VISTA CHECKOUT
@@ -210,13 +269,19 @@ body {
     border-bottom: 4px solid var(--color-dos);
 }
 
-.total-amount { color: var(--color-dos); font-size: 1.75rem; font-weight: 800; }
+.total-amount {
+    color: var(--color-dos);
+    font-size: 1.75rem;
+    font-weight: 800;
+}
 
 /* ==========================================================================
    DETALLES DE PRODUCTO
    ========================================================================== */
 
-.product-main-image-card, .product-info-card, .product-details-container {
+.product-main-image-card,
+.product-info-card,
+.product-details-container {
     background-color: var(--color-cuatro);
     border: 1px solid var(--border-ui);
     border-radius: 10px;
@@ -228,7 +293,8 @@ body {
     transition: all 0.2s ease;
 }
 
-.thumb-container:hover, .thumb-container.active {
+.thumb-container:hover,
+.thumb-container.active {
     border-color: var(--color-dos);
 }
 
@@ -240,19 +306,27 @@ body {
 .custom-tab.active {
     opacity: 1;
     color: var(--color-dos) !important;
-    background-color: var(--color-cuatro)!important;
+    background-color: var(--color-cuatro) !important;
     border-bottom: 3px solid var(--color-dos) !important;
 }
 
 .custom-tab:hover {
     opacity: 1;
-    color: var(--color-dos)!important;
+    color: var(--color-dos) !important;
 }
 
 
-.custom-table { color: var(--color-texto); }
-.custom-table th { background-color: rgba(0, 0, 0, 0.1); }
-.custom-table td { color: var(--color-texto-muted); }
+.custom-table {
+    color: var(--color-texto);
+}
+
+.custom-table th {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.custom-table td {
+    color: var(--color-texto-muted);
+}
 
 /* Social Icons */
 .social-icon-hover:hover {
@@ -300,9 +374,11 @@ body {
     transition: all 0.2s ease;
 }
 
-.nav-link-custom:hover, .nav-link-custom.active {
+.nav-link-custom:hover,
+.nav-link-custom.active {
     opacity: 1;
-    color: var(--color-dos) !important; /* Dorado en hover/active */
+    color: var(--color-dos) !important;
+    /* Dorado en hover/active */
 }
 
 /* Línea decorativa para el active */
@@ -344,17 +420,20 @@ body {
 /* Etiqueta de descuento al lado del precio */
 .descuento-tag {
     font-size: 0.85rem;
-    color: #28a745; /* Verde estándar para ofertas */
+    color: #28a745;
+    /* Verde estándar para ofertas */
     font-weight: 700;
 }
 
 .light .descuento-tag {
-    color: #1e7e34; /* Un verde un poco más oscuro en modo claro para legibilidad */
+    color: #1e7e34;
+    /* Un verde un poco más oscuro en modo claro para legibilidad */
 }
 
 /* Asegurar que las cuotas usen el color de acento (rojo o dorado según prefieras) */
 .cuotas {
-    color: var(--color-seis); /* Rojo en tu config original */
+    color: var(--color-seis);
+    /* Rojo en tu config original */
     font-size: 0.9rem;
 }
 
@@ -366,7 +445,8 @@ body {
 
 /* FOOTER */
 .footer-custom {
-    background-color: var(--color-uno); /* Sigue el fondo general */
+    background-color: var(--color-uno);
+    /* Sigue el fondo general */
     border-color: var(--border-ui) !important;
 }
 
@@ -376,7 +456,8 @@ body {
 }
 
 .footer-link:hover {
-    color: var(--color-dos); /* Dorado al pasar el mouse */
+    color: var(--color-dos);
+    /* Dorado al pasar el mouse */
 }
 
 .border-muted-custom {
@@ -404,6 +485,7 @@ body {
 .btn-close-custom {
     filter: var(--icon-filter, invert(1));
 }
+
 .light .btn-close-custom {
     filter: none;
 }
@@ -414,7 +496,8 @@ body {
 }
 
 .cart-img-container {
-    background-color: #FFFFFF; /* Fondo blanco para que el producto resalte */
+    background-color: #FFFFFF;
+    /* Fondo blanco para que el producto resalte */
 }
 
 .cart-img-container img {
@@ -487,7 +570,7 @@ body {
 /* En el modo claro, podemos darle un toque sutil al título */
 .light .catalog-title {
     background-color: #FFFFFF;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /*CHECKOUT AJUSTES*/
@@ -561,7 +644,7 @@ body {
 }
 
 /* Breadcrumb dinámico */
-.breadcrumb-custom .breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-custom .breadcrumb-item+.breadcrumb-item::before {
     color: var(--color-texto-muted);
 }
 
@@ -572,7 +655,8 @@ body {
 }
 
 .custom-table th {
-    background-color: rgba(var(--color-dos-rgb), 0.1); /* Toque dorado muy sutil */
+    background-color: rgba(var(--color-dos-rgb), 0.1);
+    /* Toque dorado muy sutil */
     color: var(--color-dos);
     border-color: var(--border-ui) !important;
 }
@@ -580,7 +664,7 @@ body {
 .custom-table td {
     color: var(--color-texto-muted);
     border-color: var(--border-ui) !important;
-    background-color: var(--color-cuatro)!important;
+    background-color: var(--color-cuatro) !important;
 }
 
 
@@ -600,7 +684,8 @@ body {
     text-decoration: none;
     background-color: var(--color-cuatro);
 }
-.light .social-btn-contact{
+
+.light .social-btn-contact {
     background-color: var(--color-uno);
     border-color: var(--color-dos);
 }
@@ -626,7 +711,8 @@ body {
 }
 
 .list-custom li::marker {
-    color: var(--color-dos); /* Viñetas doradas */
+    color: var(--color-dos);
+    /* Viñetas doradas */
 }
 
 
@@ -666,15 +752,18 @@ body {
 }
 
 /* QUERIES - CONSULTAS - CHEQUEAR REPETICION CLASES */
-.form-control, .form-select {
+.form-control,
+.form-select {
     background-color: var(--color-bg-input) !important;
     color: var(--color-texto) !important;
     border: 1px solid var(--border-ui) !important;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     background-color: var(--color-bg-input) !important;
-    border-color: var(--color-dos) !important; /* Dorado al enfocar */
+    border-color: var(--color-dos) !important;
+    /* Dorado al enfocar */
     box-shadow: 0 0 0 0.25rem rgba(212, 160, 23, 0.15);
 }
 
@@ -697,7 +786,8 @@ body {
 .terms-content p {
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    opacity: 0.9; /* Suaviza un poco el contraste puro */
+    opacity: 0.9;
+    /* Suaviza un poco el contraste puro */
 }
 
 .color-dorado-adaptativo {
@@ -726,16 +816,19 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: var(--color-seis); /* Rojo de tu paleta */
+    background-color: var(--color-seis);
+    /* Rojo de tu paleta */
     color: #FFFFFF;
     font-size: 0.75rem;
     padding: 5px 12px;
     border-radius: 4px;
     font-weight: 800;
     text-transform: uppercase;
-    z-index: 10; /* Asegura que esté por encima de la imagen */
+    z-index: 10;
+    /* Asegura que esté por encima de la imagen */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    pointer-events: none; /* Para que no interfiera con los clics en la tarjeta */
+    pointer-events: none;
+    /* Para que no interfiera con los clics en la tarjeta */
 }
 
 /* LÓGICA PARA ICONOS SVG ADAPTATIVOS CARRITO Y LOGIN*/
@@ -749,33 +842,40 @@ body {
 
 /* Modo Claro: Quitamos la inversión para que vuelvan a su color original (negro) */
 .light .icon-adaptive {
-    filter: brightness(0); /* Esto asegura que sean negros puros */
+    filter: brightness(0);
+    /* Esto asegura que sean negros puros */
 }
 
 /* Excepción para el carrito dentro del botón dorado */
 .btn-brand .icon-adaptive,
 .btn-agregar .icon-adaptive {
-    filter: brightness(0); /* Siempre oscuros sobre el fondo dorado */
+    filter: brightness(0);
+    /* Siempre oscuros sobre el fondo dorado */
 }
 
 
 /* Centrado PRECIOS EN CARDS */
 /* Contenedor de precio para mantener alineación */
 .price-container {
-    min-height: 70px; /* Ajusta esta altura según tu diseño */
+    min-height: 70px;
+    /* Ajusta esta altura según tu diseño */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra verticalmente el contenido */
+    justify-content: center;
+    /* Centra verticalmente el contenido */
     margin-bottom: 1rem;
 }
 
-.precio, .precio-descuento {
-    margin: 0 !important; /* Quitamos márgenes para controlar el centrado desde el padre */
+.precio,
+.precio-descuento {
+    margin: 0 !important;
+    /* Quitamos márgenes para controlar el centrado desde el padre */
     line-height: 1.2;
 }
 
 .precio-original {
-    min-height: 1.2em; /* Reserva espacio aunque no exista el texto */
+    min-height: 1.2em;
+    /* Reserva espacio aunque no exista el texto */
     font-size: 0.95rem;
     color: var(--color-texto-muted);
     text-decoration: line-through;
@@ -792,11 +892,13 @@ body {
     /* Usamos var(--color-cuatro) para que cambie de color según el modo */
     background-color: var(--color-cuatro);
     border: 1px solid var(--border-ui);
-    border-radius: 12px; /* Ajustado a 12px para consistencia con el resto */
+    border-radius: 12px;
+    /* Ajustado a 12px para consistencia con el resto */
     padding: 2.5rem;
     box-shadow: 0 10px 25px var(--shadow-ui);
     transition: all 0.3s ease;
 }
+
 .btn-volver-auth {
     background-color: transparent;
     text-decoration: none;
@@ -813,6 +915,7 @@ body {
     background-color: var(--color-seis);
     color: white;
 }
+
 .logo-auth {
     font-size: 2rem;
     font-weight: 800;
@@ -820,12 +923,24 @@ body {
 }
 
 .logo-soundwave {
-    color: var(--color-seis); /* Rojo (Se mantiene) */
+    color: var(--color-seis);
+    /* Rojo (Se mantiene) */
 }
 
 .logo-store {
     /* CAMBIO CLAVE: Ahora usa var(--color-texto) para que no desaparezca en modo oscuro */
     color: var(--color-texto);
+}
+
+body.fondo {
+    background-color: var(--color-uno);
+    color: var(--color-texto);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-container {
+    max-width: 450px;
+    width: 100%;
 }
 
 
@@ -834,7 +949,8 @@ body {
 .checkout-back-link {
     display: inline-flex;
     align-items: center;
-    color: var(--color-dos); /* Dorado */
+    color: var(--color-dos);
+    /* Dorado */
     text-decoration: none;
     font-weight: 700;
     font-size: 0.85rem;
@@ -843,35 +959,45 @@ body {
 }
 
 .checkout-back-link:hover {
-    color: var(--color-seis); /* Cambia a rojo al pasar el mouse */
-    transform: translateX(-5px); /* Pequeño efecto de movimiento */
+    color: var(--color-seis);
+    /* Cambia a rojo al pasar el mouse */
+    transform: translateX(-5px);
+    /* Pequeño efecto de movimiento */
     text-decoration: none;
 }
+
 /* Resumen lateral */
 .checkout-summary-card {
     background-color: var(--color-cuatro) !important;
     border: 1px solid var(--border-ui) !important;
-    overflow: hidden; /* Para que el header respete los bordes redondeados */
+    overflow: hidden;
+    /* Para que el header respete los bordes redondeados */
 }
 
 .summary-header {
-    background-color: var(--color-cuatro); /* Ligeramente diferente al body */
+    background-color: var(--color-cuatro);
+    /* Ligeramente diferente al body */
     border-bottom: 1px solid var(--border-ui);
 }
 
 /* El badge de cantidad (el círculo con el 1) */
 .bg-adaptativo-badge {
-    background-color: var(--color-dos) !important; /* Dorado */
-    color: var(--color-uno) !important; /* Texto oscuro para contraste */
+    background-color: var(--color-dos) !important;
+    /* Dorado */
+    color: var(--color-uno) !important;
+    /* Texto oscuro para contraste */
     font-weight: 800;
-    margin-left: 15px; /* Separación del texto RESUMEN */
+    margin-left: 15px;
+    /* Separación del texto RESUMEN */
 }
+
 .checkout-payment-option {
     background-color: var(--color-uno);
     border-color: var(--border-ui) !important;
     transition: all 0.2s ease;
     cursor: pointer;
 }
+
 .checkout-payment-option:hover {
     border-color: var(--color-dos) !important;
 }
@@ -881,12 +1007,14 @@ body {
 .checkout-back-link {
     display: inline-flex;
     align-items: center;
-    color: var(--color-dos); /* Dorado de la marca */
+    color: var(--color-dos);
+    /* Dorado de la marca */
     text-decoration: none;
     font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px; /* Espaciado tipo premium */
+    letter-spacing: 1.5px;
+    /* Espaciado tipo premium */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     padding: 5px 0;
@@ -899,7 +1027,8 @@ body {
 
 /* Efecto de Hover */
 .checkout-back-link:hover {
-    color: var(--color-seis); /* Cambia al rojo corporativo */
+    color: var(--color-seis);
+    /* Cambia al rojo corporativo */
     text-decoration: none;
 }
 
