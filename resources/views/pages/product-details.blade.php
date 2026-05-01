@@ -8,7 +8,7 @@
             <nav class="breadcrumb-custom" aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('catalog') }}" class="text-decoration-none color-adaptativo">Catálogo</a></li>
-                    <li class="breadcrumb-item active color-dorado-adaptativo" aria-current="page">Piano Casio</li>
+                    <li class="breadcrumb-item color-dorado-adaptativo" aria-current="page">Piano Casio</li>
                 </ol>
             </nav>
         </div>
