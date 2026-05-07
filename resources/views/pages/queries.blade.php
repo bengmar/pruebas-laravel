@@ -8,7 +8,7 @@
                 Nuestro compromiso es responder cada consulta con la mayor eficiencia posible,
                 asegurando un servicio confiable y de calidad.
             </p>
-           
+
             <form action="{{ route('queries.send') }}" method="POST">
                 @csrf
                 <div class="row">

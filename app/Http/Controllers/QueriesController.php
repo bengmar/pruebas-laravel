@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QueriesRequest;
 use Illuminate\Http\Request;
 use Apps\Model\Query;
+use SweetAlert2\Laravel\Swal;
 
 class QueriesController extends Controller
 {
@@ -13,6 +14,11 @@ class QueriesController extends Controller
     }
     public function query_store(QueriesRequest $request){
         $datos = $request->validated();
+        Swal::success([
+            'title' => '!Hecho!',
+            'text' => '¡Consulta enviada con éxito!',
+            'theme' => 'auto'
+        ]);
         return redirect()->back()->with('success', 'Se ha enviado la consulta');
     }
 
