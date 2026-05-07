@@ -124,9 +124,10 @@ footer {
 /* Botón Brand (Dorado) */
 .btn-brand,
 .btn-agregar,
+.special-btn,
 .btn-confirm-order,
 .btn-add-cart {
-    display: block;
+    display: inline-block;
     width: 100%;
     background-color: var(--color-dos);
     color: var(--color-uno);
@@ -142,8 +143,18 @@ footer {
     transition: all 0.2s ease;
 }
 
+
+
+@media (min-width: 768px) {
+    .special-btn {
+        width: auto;       /* El botón solo mide lo que mide su texto */
+        min-width: 200px;  /* Evita que sea demasiado pequeño */
+    }
+}
+
 .btn-brand:hover,
 .btn-agregar:hover,
+.special-btn:hover,
 .btn-confirm-order:hover,
 .btn-add-cart:hover {
     background-color: var(--color-cinco);
@@ -728,11 +739,11 @@ footer {
     background-color: var(--color-uno);
 }
 
-/* Redondeado opcional para el carrusel */
+/* Redondeado opcional para el carrusel
 .custom-carousel {
     border-radius: 0 0 12px 12px;
     overflow: hidden;
-}
+} */
 
 /* MARKETING - COMERCIALIZACION */
 /* Tarjetas de Compromiso (Reutilizamos lógica de team-card) */

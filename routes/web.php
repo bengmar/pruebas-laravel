@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\QueriesController;
+use App\Http\Requests\QueriesRequest;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,3 +32,4 @@ Route::controller(AuthController::class)->group(function(){
 
 //Rutas de QueriesController
 Route::get('/consultas', [QueriesController::class, 'index'])->name('queries');
+Route::post('/enviar-consulta',[QueriesController::class, 'query_store']) ->name('queries.send');

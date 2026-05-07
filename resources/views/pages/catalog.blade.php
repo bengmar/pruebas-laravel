@@ -21,7 +21,7 @@
                         <p class="text-muted-adaptativo">
                             Actualmente no tenemos artículos en <strong>{{ $tituloCategoria }}</strong>.
                         </p>
-                        <a href="{{ route('catalog') }}" class="btn-brand mt-3 d-inline-block px-4 text-decoration-none">
+                        <a href="{{ route('catalog') }}" class="special-btn mt-3 px-4 text-decoration-none">
                             Ver todo el catálogo
                         </a>
                     </div>

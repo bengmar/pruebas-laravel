@@ -24,13 +24,13 @@
                     <img src="{{ asset('icons/svg/persona.svg') }}" alt="Iniciar Sesion" class="icon-adaptive">
                 </a>
 
-                <div class="d-flex flex-column d-none d-lg-flex" style="line-height: 1.2;">
+                <div class="d-flex flex-column d-none d-lg-flex text-center" style="line-height: 1.2;">
                     <a href="{{ route('login') }}" class="text-decoration-none">
                         {{-- Usamos color-adaptativo para que cambie entre blanco y oscuro --}}
-                        <span class="fw-semibold color-adaptativo p-lg-1">¡Hola! Inicia Sesión</span>
+                        <span class="fw-semibold color-adaptativo p-lg-1">Iniciar Sesión</span>
                     </a>
                     <a href="{{ route('signup') }}" class="text-decoration-none">
-                        <small class="text-muted-adaptativo text-center">¿Eres Nuevo? Regístrate</small>
+                        <small class="text-muted-adaptativo">¿Eres Nuevo?</small>
                     </a>
                 </div>
             </div>
