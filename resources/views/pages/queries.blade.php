@@ -8,7 +8,16 @@
                 Nuestro compromiso es responder cada consulta con la mayor eficiencia posible,
                 asegurando un servicio confiable y de calidad.
             </p>
-
+            @if (session('success'))
+                <div class="pages-decoration p-2 p-md-4 px-lg-5">
+                    <p class="text-success text-center m-auto">{{ session('success') }}</p>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="pages-decoration p-2 p-md-4 px-lg-5">
+                    <p class="text-danger text-center m-auto">Error en el envío del formulario: revise los campos.</p>
+                </div>
+            @endif
             <form action="{{ route('queries.send') }}" method="POST">
                 @csrf
                 <div class="row">
@@ -34,12 +43,12 @@
                 <div class="mb-3">
                     <label for="asunto" class="form-label color-adaptativo">Asunto *</label>
                     <select id="asunto" name="asunto" class="form-select" aria-label="Seleccionar asunto">
-                        <option value="" selected disabled>Elija una opción</option>
-                        <option value="1">Formas de pago</option>
-                        <option value="2">Modos/costos de envío</option>
-                        <option value="3">Devolución</option>
-                        <option value="4">Cuenta</option>
-                        <option value="5">Otros</option>
+                        <option value="" disabled {{ old('asunto') == "" ? 'selected' : '' }}>Elija una opción</option>
+                        <option value="1" {{ old('asunto') == "1" ? 'selected' : '' }}>Formas de pago</option>
+                        <option value="2" {{ old('asunto') == "2" ? 'selected' : '' }}>Modos/costos de envío</option>
+                        <option value="3" {{ old('asunto') == "3" ? 'selected' : '' }}>Devolución</option>
+                        <option value="4" {{ old('asunto') == "4" ? 'selected' : '' }}>Cuenta</option>
+                        <option value="5" {{ old('asunto') == "5" ? 'selected' : '' }}>Otros</option>
                     </select>
                     @error('asunto')
                         <small class="text-danger">{{ $message }}</small>
@@ -48,7 +57,10 @@
 
                 <div class="mb-3">
                     <label for="mensaje" class="form-label color-adaptativo">Mensaje *</label>
-                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí...">{{ old('mensaje') }}</textarea>
+                    <textarea class="form-control" id="mensaje" maxlength="500" name="mensaje" rows="4" placeholder="Escribe tu consulta aquí...">{{ old('mensaje') }}</textarea>
+                    <div id="contador" style="text-align: right; font-size: 0.9em; color: #666;">
+                        0 / 500 caracteres
+                    </div>
                     @error('mensaje')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -60,4 +72,5 @@
             </form>
         </div>
     </div>
+<script src="{{ asset('js/text-area.js') }}"></script>
 </x-layout>

@@ -28,20 +28,21 @@ class QueriesRequest extends FormRequest
             'nombre' => 'required|string|max:30',
             'email' => 'required|email',
             'asunto' => 'required',
-            'mensaje' => 'required|string|min:10'
+            'mensaje' => 'required|string|min:10|max:500'
         ];
     }
     #[Override]
     public function messages(): array
     {
         return [
-            'nombre.required' => 'El nombre es requerido',
-            'nombre.max' => 'Se admiten 30 caracteres como máximo',
-            'email.email' => 'Debe ingresar un correo válido',
-            'email.required' => 'Se requiere un correo',
-            'asunto.required'=> 'Debe elegir una opción',
-            'mensaje.min' => 'Mensaje muy corto',
-            'mensaje.required' => 'Debe escribir un mensaje'
+            'nombre.required' => 'Debe ingresar su nombre.',
+            'nombre.max' => 'Se admiten 30 caracteres como máximo.',
+            'email.email' => 'Se requiere un email válido.',
+            'email.required' => 'Debe ingresar un e-mail de contacto.',
+            'asunto.required'=> 'Debe seleccionar un asunto.',
+            'mensaje.min' => 'El mensaje es muy breve.',
+            'mensaje.max' => 'Se admiten 500 caracteres como máximo.',
+            'mensaje.required' => 'Debe escribir un mensaje.'
         ];
     }
 }

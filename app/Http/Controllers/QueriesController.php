@@ -16,10 +16,9 @@ class QueriesController extends Controller
         $datos = $request->validated();
         Swal::success([
             'title' => '!Hecho!',
-            'text' => '¡Consulta enviada con éxito!',
-            'theme' => 'auto'
+            'text' => '¡La consulta se ha procesado correctamente!'
         ]);
-        return redirect()->back()->with('success', 'Se ha enviado la consulta');
+        return redirect()->back()->with('success', '¡Recibido! Nos pondremos en contacto a la brevedad.');
     }
 
 

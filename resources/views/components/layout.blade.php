@@ -10,9 +10,18 @@
     <!-- SCRIPT ANTI-PARPADEO (Debe ir aquí arriba) -->
     <script>
         (function() {
-            const theme = localStorage.getItem('theme');
-            if (theme === 'light') {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Si no hay nada guardado, usamos el sistema. Si hay, usamos lo guardado.
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+            if (theme === 'dark') {
+                document.documentElement.classList.remove('light');
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+            } else {
                 document.documentElement.classList.add('light');
+                document.documentElement.setAttribute('data-bs-theme', 'light');
             }
         })();
     </script>
@@ -46,4 +55,5 @@
     <script src="{{ asset('vendor/js/bootstrap.bundle.min.js') }}"></script>
     @include('sweetalert2::index');
 </body>
+
 </html>

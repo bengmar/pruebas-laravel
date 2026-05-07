@@ -1063,3 +1063,25 @@ body.fondo {
 .checkout-back-link:hover::after {
     width: 100%;
 }
+
+
+/* Colores para SweetAlert cuando NO hay clase .light (es decir, modo oscuro) */
+:root:not(.light) {
+    --swal-bg: #212529; /* Gris oscuro de Bootstrap */
+    --swal-text: #f8f9fa;
+}
+
+.light {
+    --swal-bg: #ffffff;
+    --swal-text: #212529;
+}
+
+/* Aplicar a SweetAlert */
+.swal2-popup {
+    background-color: var(--swal-bg) !important;
+    color: var(--swal-text) !important;
+}
+
+.swal2-title, .swal2-html-container {
+    color: var(--swal-text) !important;
+}
