@@ -1,13 +1,18 @@
 <nav class="navbar navbar-expand-lg border-bottom nav-custom">
     <div class="container-fluid">
         {{-- Buscador Móvil --}}
-        <div class="d-flex d-lg-none flex-grow-1 px-4">
-            <form class="d-flex w-100">
-                <input class="form-control form-control-sm rounded-start-pill" type="search" placeholder="Buscar...">
+        <div class="d-flex d-lg-none flex-grow-1 px-4 position-relative">
+            <form class="d-flex w-100" action="{{ route('search') }}" method="GET">
+                <input id="mobile-search" class="form-control form-control-sm rounded-start-pill" type="search"
+                    name="query" placeholder="Buscar..." value="{{ request('query') }}" autocomplete="off">
                 <button class="btn btn-outline-secondary btn-sm rounded-end-pill" type="submit">
                     <img src="{{ asset('icons/svg/buscar.svg') }}" alt="buscar" width="16" class="icon-adaptive">
                 </button>
             </form>
+            {{-- Contenedor de sugerencias móvil --}}
+            <div id="mobile-search-suggestions" class="list-group position-absolute w-100 shadow d-none"
+                style="z-index: 1050; top: 100%; left: 0; padding: 0 1.5rem;">
+            </div>
         </div>
 
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
@@ -72,7 +77,7 @@
                                     'item-catalogo',
                                     'item-catalogo-active' => request()->route('categoria') == $cat,
                                 ]) href="{{ route('catalog', $cat) }}">
-                                {{-- Opcional a operador ternario anidado --}}
+                                    {{-- Opcional a operador ternario anidado --}}
                                     {{ strtoupper(
                                         match ($cat) {
                                             'Soportes' => 'TRÍPODES y Soportes',

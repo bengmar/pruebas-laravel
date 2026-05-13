@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\QueriesController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SignUpController;
 use App\Http\Requests\QueriesRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -19,17 +22,45 @@ Route::controller(MainController::class)->group(function(){
 });
 
 //Rutas de CatalogController
-Route::controller(CatalogController::class)->group(function(){
+Route::controller(ProductController::class)->group(function(){
     Route::get('/catalogo/{categoria?}', 'index')->name('catalog');
     Route::get('/producto-detalles/{id}', 'details')->name('product-details');
 });
 
 //Rutas de AuthController
 Route::controller(AuthController::class)->group(function(){
-    Route::get('/login', 'login')->name('login');
-    Route::get('/signup', 'signup')->name('signup');
+   // Route::get('/login', 'login')->name('login');
+    //Route::get('/signup', 'signup')->name('signup');
 });
 
 //Rutas de QueriesController
-Route::get('/consultas', [QueriesController::class, 'index'])->name('queries');
-Route::post('/enviar-consulta',[QueriesController::class, 'query_store']) ->name('queries.send');
+Route::get('/consultas', [QueriesController::class, 'create'])->name('queries');
+Route::post('/enviar-consulta',[QueriesController::class, 'store']) ->name('queries.send');
+
+//Rutas de SignUpController
+Route::controller(SignUpController::class)->group(function(){
+    Route::get('/signup', 'create')->name('signup.create');
+    Route::post('/signup', 'store')->name('signup.store');
+});
+
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'show')->name('login');
+    Route::post('/login', 'authenticate')->name('login.authenticate');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+Route::middleware(['auth'])->group(function () {
+
+    // Ruta para el panel de usuario (Solo para Clientes, rol 2)
+   // Route::get('/panel-usuario', [CustomerController::class, 'index'])
+       // ->middleware(function ($request, $next) {
+        //    if (auth()->user()->role_id !== 2) {
+        //        return redirect('/admin'); // Si es admin, lo mandamos a su lugar
+    //        }
+//            return $next($request);
+     //   })
+     //   ->name('user.dashboard');
+
+});

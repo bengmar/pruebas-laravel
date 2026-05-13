@@ -41,10 +41,17 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/') . '/storage',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,
+        ],
+        'public_root' => [
+            'driver' => 'local',
+            'root' => public_path(), // Esto apunta a la carpeta /public
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [

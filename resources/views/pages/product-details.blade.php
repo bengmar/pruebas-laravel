@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot name='title'>{{ $product['title']}}</x-slot>
+    <x-slot name='title'>{{ $product['title'] }}</x-slot>
     <div class="container py-5">
         {{-- Navegación superior adaptativa --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -10,7 +10,7 @@
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="{{ route('catalog') }}"
                             class="text-decoration-none color-adaptativo">Catálogo</a></li>
-                    <li class="breadcrumb-item color-dorado-adaptativo" aria-current="page">{{ $product['title'] }}</li>
+                    <li class="breadcrumb-item color-dorado-adaptativo" aria-current="page">{{ $product->title }}</li>
                 </ol>
             </nav>
         </div>
@@ -22,20 +22,23 @@
                     <div class="col-2">
                         <div class="d-flex flex-column gap-2">
                             <div class="thumb-container active">
-                                <img src="{{ asset('images/piano-casio.webp') }}" class="img-fluid">
+                                <img onclick="changeMainImage(this)" src="{{ asset($product->image_1) }}"
+                                    class="img-fluid">
                             </div>
                             <div class="thumb-container">
-                                <img src="{{ asset('images/microfono-1.webp') }}" class="img-fluid">
+                                <img onclick="changeMainImage(this)" src="{{ asset($product->image_2) }}"
+                                    class="img-fluid">
                             </div>
                             <div class="thumb-container">
-                                <img src="{{ asset('images/microfono-2.webp') }}" class="img-fluid">
+                                <img onclick="changeMainImage(this)" src="{{ asset($product->image_3) }}"
+                                    class="img-fluid">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-10">
                         <div class="product-main-image-card p-3 shadow-lg">
-                            <img src="{{ asset($product['image']) }}" class="img-fluid w-100 rounded"
+                            <img id="mainImage" src="{{ asset($product->image_1) }}" class="img-fluid w-100 rounded"
                                 alt="Imagen principal">
                         </div>
                     </div>
@@ -45,25 +48,25 @@
             {{-- Información de compra --}}
             <div class="col-md-5">
                 <div class="product-info-card p-4 h-100">
-                    <h1 class="h2 fw-bold color-adaptativo mb-3">{{ $product['title'] }}</h1>
+                    <h1 class="h2 fw-bold color-adaptativo mb-3">{{ $product->title }}</h1>
 
                     <div class="price-box mb-4">
 
                         <span class="d-block text-muted-adaptativo text-uppercase small fw-bold">Precio Contado</span>
                         <h2 class="display-5 fw-bold color-dorado-adaptativo">
-                            @if ($product['on_sale'])
+                            @if ($product->on_sale)
                                 <div class="d-flex align-items-baseline gap-2">
                                     <p class="precio-descuento fs-1 mb-0">
-                                        ${{ number_format($product['final_price'], 2, ',', '.') }}
-                                        <span class="descuento-tag">{{ $product['discount'] }}% OFF</span>
+                                        ${{ number_format($product->final_price, 2, ',', '.') }}
+                                        <span class="descuento-tag">{{ $product->discount }}% OFF</span>
                                 </div>
                                 <p class="precio-original mb-0">
-                                    ${{ number_format($product['price'], 2, ',', '.') }}
+                                    ${{ number_format($product->price, 2, ',', '.') }}
                                 </p>
                             @else
                                 <div class="d-flex align-items-baseline">
                                     <p class="display-5 fw-bold color-dorado-adaptativo mb-0">
-                                        ${{ number_format($product['price'], 2, ',', '.') }}
+                                        ${{ number_format($product->price, 2, ',', '.') }}
                                     </p>
                                 </div>
                             @endif
@@ -75,7 +78,7 @@
                             Características destacadas</h6>
                         <ul class="list-unstyled color-adaptativo small">
                             <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i>
-                                {{ $product['subtitle'] }}</li>
+                                {{ $product->subtitle }}</li>
                             {{-- Se quitaron 2 hileras iguales, por falta de atributos en el array --}}
 
                         </ul>
@@ -116,11 +119,11 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">Marca</th>
-                                            <td>{{ $product['brand'] }}</td>
+                                            <td>{{ $product->brand->name }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Modelo</th>
-                                            <td>{{ $product['subtitle'] }}</td>
+                                            <td>{{ $product->subtitle }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Cantidad de llaves</th>
@@ -141,7 +144,7 @@
 
                         <div class="tab-pane fade" id="description" role="tabpanel">
                             <div class="color-adaptativo lh-lg">
-                                <p>Experimente una revolución en el diseño con {{ $product['subtitle'] }}. Excelente
+                                <p>Experimente una revolución en el diseño con {{ $product->subtitle }}. Excelente
                                     diseño.</p>
                                 <p>Ideal tanto para estudiantes avanzados como para profesionales que necesitan
                                     portabilidad sin perder la sensación táctil de un instrumento real.</p>
@@ -152,4 +155,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function changeMainImage(thumbnail) {
+            // 1. Cambiar el SRC de la imagen principal
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnail.src;
+
+            // 2. (Opcional) Gestionar la clase 'active' para el borde resaltado
+            // Quitamos la clase 'active' de todos los contenedores
+            document.querySelectorAll('.thumb-container').forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Agregamos la clase 'active' al contenedor del clic actual
+            thumbnail.parentElement.classList.add('active');
+        }
+    </script>
 </x-layout>

@@ -950,7 +950,7 @@ body.fondo {
 }
 
 .auth-container {
-    max-width: 450px;
+    max-width: 500px;
     width: 100%;
 }
 
@@ -1085,3 +1085,83 @@ body.fondo {
 .swal2-title, .swal2-html-container {
     color: var(--swal-text) !important;
 }
+
+/* Estilo para el botón de mostrar contraseña */
+#togglePassword {
+    display: flex;
+    align-items: center;
+    padding-right: 0.75rem !important;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+#togglePassword:hover {
+    color: var(--color-dos) !important;
+}
+
+/* Evitamos que el texto de la contraseña choque con el icono */
+#passwordLogin.pe-5 {
+    padding-right: 3rem !important;
+}
+
+
+/* PAGINADOR BÚSQUEDA */
+/* Paginador Adaptativo Soundwave Store */
+.pagination {
+    /* Colores base tomados de tu :root */
+    --bs-pagination-color: var(--color-dos); /* Números en dorado */
+    --bs-pagination-bg: var(--color-cuatro); /* Fondo de la superficie */
+    --bs-pagination-border-color: var(--border-ui);
+
+    /* Estados de Hover */
+    --bs-pagination-hover-color: var(--color-uno);
+    --bs-pagination-hover-bg: var(--color-cinco); /* Dorado brillante */
+    --bs-pagination-hover-border-color: var(--color-cinco);
+
+    /* Estado Activo */
+    --bs-pagination-active-color: var(--color-uno);
+    --bs-pagination-active-bg: var(--color-dos); /* Dorado principal */
+    --bs-pagination-active-border-color: var(--color-dos);
+
+    /* Estado Deshabilitado */
+    --bs-pagination-disabled-color: var(--color-texto-muted);
+    --bs-pagination-disabled-bg: var(--color-uno);
+    --bs-pagination-disabled-border-color: var(--border-ui);
+
+    gap: 0.3rem; /* Espaciado moderno entre botones */
+}
+
+.page-link {
+    border-radius: 6px !important; /* Bordes suaves */
+    padding: 0.5rem 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px var(--shadow-ui);
+}
+
+/* Ajuste específico para que el texto se lea bien sobre el dorado activo */
+.page-item.active .page-link {
+    color: var(--color-uno) !important; /* Fondo oscuro sobre dorado */
+}
+
+/* Efecto de elevación al pasar el mouse */
+.page-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Oculta la descripción del paginador ("Mostrando X de Y resultados") */
+.d-flex.justify-content-center.mt-5 nav .flex-1 {
+    display: none !important;
+}
+
+/* En caso de que Bootstrap use clases de margen para separar el texto de los botones */
+.d-flex.justify-content-center.mt-5 nav div:first-child {
+    display: none !important;
+}
+
+/* Asegura que el contenedor de los botones de números sea visible y esté centrado */
+.d-flex.justify-content-center.mt-5 nav div:last-child {
+    display: block !important;
+}
+
+

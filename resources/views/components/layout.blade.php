@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('icons/ico/icono-soundWave.ico') }}">
     <title>{{ $title ?? 'Inicio' }}</title>
-
     <!-- SCRIPT ANTI-PARPADEO (Debe ir aquí arriba) -->
     <script>
         (function() {
@@ -53,6 +52,7 @@
     <x-footer />
     <script src="{{ asset('js/theme-toggle.js') }}"></script>
     <script src="{{ asset('vendor/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/search.js') }}"></script>
     @include('sweetalert2::index');
 </body>
 

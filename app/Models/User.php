@@ -3,30 +3,53 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser; // La interfaz
+use Filament\Panel;                         // La clase Panel que espera el método
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['last_name','first_name', 'email', 'password','role_id'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Solo el role_id 1 tiene permiso de entrar a /admin
+        return $this->role_id === 1;
+    }
     /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
      */
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    protected static function booted(){
+        static::creating(function ($user) {
+            $user->first_name ??='Admin';
+            $user->last_name ??='User';
+            $user->role_id ??= 1;
+        });
+    }
+    //Necesario ya que filament usa 'name' y en la bd no uso ese
+    public function getNameAttribute():string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }
