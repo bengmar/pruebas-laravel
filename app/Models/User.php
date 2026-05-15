@@ -40,13 +40,7 @@ class User extends Authenticatable implements FilamentUser
     public function role(){
         return $this->belongsTo(Role::class);
     }
-    protected static function booted(){
-        static::creating(function ($user) {
-            $user->first_name ??='Admin';
-            $user->last_name ??='User';
-            $user->role_id ??= 1;
-        });
-    }
+    
     //Necesario ya que filament usa 'name' y en la bd no uso ese
     public function getNameAttribute():string
     {

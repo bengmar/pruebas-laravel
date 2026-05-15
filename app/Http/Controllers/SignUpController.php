@@ -20,13 +20,8 @@ class SignUpController extends Controller
         $validated = $request->validated();
 
         // Aseguramos que el role_id sea 2 y la contraseña esté encriptada
-        User::create([
-            'first_name' => $validated['first_name'],
-            'last_name'  => $validated['last_name'],
-            'email'      => $validated['email'],
-            'password'   => Hash::make($validated['password']), // encriptado
-            'role_id'    => 2, // Siempre el usuario creado por formulario es cliente
-        ]);
+        $validated['role_id'] = 2;
+        $validated['password'] = Hash::make($validated['password']);
 
         // Creando el usuario
         User::create($validated);

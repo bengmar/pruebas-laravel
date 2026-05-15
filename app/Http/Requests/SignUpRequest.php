@@ -22,14 +22,18 @@ class SignUpRequest extends FormRequest
      */
 
     public function rules(): array
-    {
-        return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name'  => ['required', 'string', 'max:255'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password'   => ['required', 'string', 'min:8', 'max:100', 'confirmed'],
-
-            // role_id manejado en el controlador SignUpController
-        ];
-    }
+{
+    return [
+        'first_name' => ['required', 'string', 'max:255'],
+        'last_name'  => ['required', 'string', 'max:255'],
+        'email'      => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            'unique:users,email' // <--- ESTO ES VITAL
+        ],
+        'password'   => ['required', 'string', 'min:8', 'confirmed'],
+    ];
+}
 }
