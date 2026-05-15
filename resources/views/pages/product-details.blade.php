@@ -21,18 +21,24 @@
                 <div class="row g-2">
                     <div class="col-2">
                         <div class="d-flex flex-column gap-2">
+                            @if($product->image_1)
                             <div class="thumb-container active">
                                 <img onclick="changeMainImage(this)" src="{{ asset($product->image_1) }}"
                                     class="img-fluid">
                             </div>
+                            @endif
+                            @if($product->image_2)
                             <div class="thumb-container">
                                 <img onclick="changeMainImage(this)" src="{{ asset($product->image_2) }}"
                                     class="img-fluid">
                             </div>
+                            @endif
+                            @if($product->image_3)
                             <div class="thumb-container">
                                 <img onclick="changeMainImage(this)" src="{{ asset($product->image_3) }}"
                                     class="img-fluid">
                             </div>
+                            @endif
                         </div>
                     </div>
 

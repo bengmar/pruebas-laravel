@@ -27,11 +27,6 @@ Route::controller(ProductController::class)->group(function(){
     Route::get('/producto-detalles/{id}', 'details')->name('product-details');
 });
 
-//Rutas de AuthController
-Route::controller(AuthController::class)->group(function(){
-   // Route::get('/login', 'login')->name('login');
-    //Route::get('/signup', 'signup')->name('signup');
-});
 
 //Rutas de QueriesController
 Route::get('/consultas', [QueriesController::class, 'create'])->name('queries');
@@ -64,3 +59,8 @@ Route::middleware(['auth'])->group(function () {
      //   ->name('user.dashboard');
 
 });
+
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+}); /* Aseguro que 404 pase por el middleware web, asi se carga la sesión
+y se visualiza si está logueado un usuario/admin */

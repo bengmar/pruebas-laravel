@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SignUpRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,16 +20,14 @@ class SignUpRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name'  => ['required', 'string', 'max:255'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password'   => ['required', 'string', 'min:8', 'max:100', 'confirmed'],
+            // 'string' y 'max' para evitar envíos de datos masivos (DoS)
+            'email' => ['required', 'string', 'email', 'max:255'],
 
-            // role_id manejado en el controlador SignUpController
+            // Solo 'required' y 'string'. min:8 daría pistas a un atacante de que el correo existe en bd.
+            'password' => ['required', 'string'],
         ];
     }
 }

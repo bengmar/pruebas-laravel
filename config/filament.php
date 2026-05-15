@@ -28,7 +28,7 @@ return [
         //     'encrypted' => true,
         //     'forceTLS' => env('VITE_PUSHER_SCHEME', 'https') === 'https',
         // ],
-
+2
     ],
 
     /*
