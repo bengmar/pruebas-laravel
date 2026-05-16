@@ -26,12 +26,16 @@ class CategoryResource extends Resource
     public static function form(Schema $form): Schema
     {
         return $form
-        ->schema([
+            ->schema([
 
-        TextInput::make('name') // Debe ser 'name' igual que en la DB
-                ->required()
-                ->maxLength(100),
-        ]);
+                TextInput::make('name') // Debe ser 'name' igual que en la DB
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('display_title')
+                    ->label('Título Largo / Comercial')
+                    ->placeholder('Ej: Equipos de Audio y Sonido')
+                    ->maxLength(255),
+            ]);
     }
 
     public static function table(Table $table): Table

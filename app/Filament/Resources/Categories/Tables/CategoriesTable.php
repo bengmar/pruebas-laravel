@@ -25,7 +25,13 @@ class CategoriesTable
                     ->searchable() // Permite buscar categorías rápidamente
                     ->sortable()
                     ->weight('bold'),
-
+                //Nombre para mostrar en la web
+                TextColumn::make('display_title')
+                    ->label('Título Largo/Comercial')
+                    ->badge()
+                    ->color('gray')
+                    ->searchable()
+                    ->sortable(),
                 // Conteo de productos (Muestra cuántos productos tiene cada categoría)
                 TextColumn::make('productos_count')
                     ->label('Cant. Productos')
