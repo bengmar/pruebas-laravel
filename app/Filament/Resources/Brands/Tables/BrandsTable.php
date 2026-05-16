@@ -35,8 +35,8 @@ class BrandsTable
 
                 // Usamos ToggleColumn para que puedas activar/desactivar
                 // la marca directamente desde la lista sin entrar a editar
-                ToggleColumn::make('activo')
-                    ->label('Estado Activo'),
+                ToggleColumn::make('active')
+                    ->label('¿Marca activa?'),
 
                 TextColumn::make('updated_at')
                     ->label('Última edición')
@@ -45,7 +45,7 @@ class BrandsTable
             ])
             ->filters([
                 // Filtro rápido para ver solo marcas activas o inactivas
-                TernaryFilter::make('activo')
+                TernaryFilter::make('active')
                     ->label('Estado de Marca')
                     ->boolean(),
             ])

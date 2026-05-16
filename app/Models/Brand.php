@@ -9,7 +9,7 @@ class Brand extends Model
 {
     protected $fillable = [
         'name',
-        'activo',
+        'active',
     ];
 
     //una categoria puede tener muchos productos

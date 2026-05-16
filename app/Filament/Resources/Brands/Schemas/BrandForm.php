@@ -23,7 +23,7 @@ class BrandForm
                         ->unique(ignoreRecord: true)
                         ->columnSpan(1),
 
-                    Toggle::make('activo')
+                    Toggle::make('active')
                         ->label('¿Marca activa?')
                         ->default(true)
                         ->inline(false),

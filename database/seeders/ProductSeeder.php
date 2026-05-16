@@ -569,7 +569,7 @@ class ProductSeeder extends Seeder
             // Busca la marca o la crea si no existe
             $brand = Brand::firstOrCreate(
                 ['name' => $data['brand']],
-                ['activo' => true]
+                ['active' => true]
             );
 
             // Crea el producto

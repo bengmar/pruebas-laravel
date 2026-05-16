@@ -20,6 +20,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProductResource extends Resource
 {
@@ -55,12 +56,19 @@ class ProductResource extends Resource
             'view' => Pages\ViewProduct::route('/{record}'),
         ];
     }
+
+    //Función para ignorar el active = false,asi aquí si se pueden visualizar productos desactivados
+    public static function getEloquentQuery(): Builder
+    {
+        // Esto desactiva el alcance global "active" solo en Filament
+        return parent::getEloquentQuery()->withoutGlobalScope('active');
+    }
+
     // Define qué campos se usan para la búsqueda global en la barra superior
     public static function getGloballySearchableAttributes(): array
     {
         return ['title', 'subtitle', 'description'];
     }
-
     // Personaliza lo que se ve en el resultado de búsqueda global
     public static function getGlobalSearchResultDetails(Model $record):array
     {
@@ -78,4 +86,6 @@ class ProductResource extends Resource
 
     // Título para un solo registro (ej: "Crear Producto")
     protected static ?string $modelLabel = 'Producto';
+
+
 }

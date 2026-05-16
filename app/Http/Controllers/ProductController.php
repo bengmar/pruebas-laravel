@@ -11,17 +11,16 @@ class ProductController extends Controller
 
     public function index($categoria = null)
     {
-        // Usamos 'with' para cargar la categoría y evitar el problema de consultas N+1
+        // El Scope ya aplicó el 'where is_active = true' para todos los controladores
         $query = Product::with('category');
 
         if ($categoria) {
-            // Filtramos en la tabla 'categories' buscando por la columna 'name'
             $query->whereHas('category', function ($q) use ($categoria) {
-                $q->where('name', $categoria);
+                $q->where('slug', $categoria); // Mejor filtrar por slug que por nombre
             });
         }
 
-        $products = $query->get();
+        $products = $query->get(); //$query->paginate(12); // Es mejor usar paginate que get() si tienes muchos productos
 
         // El resto de tu lógica de títulos...
         $nombresCategorias = [

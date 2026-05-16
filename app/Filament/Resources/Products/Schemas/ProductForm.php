@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Models\Brand;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\RichEditor;
@@ -14,7 +15,8 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductForm
 {
@@ -47,7 +49,27 @@ class ProductForm
                     ->schema([
                         Select::make('brand_id')
                             ->label('Marca')
-                            ->relationship('brand', 'name') // 'brand' es la relación en el modelo Product, 'name' es la columna en brands[cite: 4]
+                            ->relationship(
+                                'brand',
+                                'name',
+                                modifyQueryUsing: function (Builder $query, ?Model $record) {
+                                    // Si el producto existe (estamos editando)
+                                    if ($record && $record->brand_id) {
+                                        return $query->where(function ($q) use ($record) {
+                                            $q->where('active', 1)
+                                                ->orWhere('id', $record->brand_id); // Mantenemos la marca actual aunque sea active = 0
+                                        });
+                                    }
+
+                                    // Si estamos creando un producto nuevo, solo marcas activas
+                                    return $query->where('active', 1);
+                                }
+                            ) // 'brand' es la relación en el modelo Product, 'name' es la columna en brands
+                            ->options(
+                                // Aquí filtramos manualmente para el formulario
+                                Brand::where('active', 1) // O el nombre de tu columna ('is_active', etc.)
+                                    ->pluck('name', 'id')
+                            )
                             ->searchable()
                             ->preload()
                             ->required(),

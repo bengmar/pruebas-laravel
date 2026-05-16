@@ -35,12 +35,14 @@ class ProductsTable
 
                 TextColumn::make('category.name') // Asumiendo que Category tiene 'name'
                     ->label('Categoría')
+                    ->searchable()
                     ->sortable()
                     ->badge()
                     ->color('gray'),
 
                 TextColumn::make('brand.name') // Asumiendo que Brand tiene 'name'
                     ->label('Marca')
+                    ->searchable()
                     ->sortable(),
 
                 // Precios y Stock
