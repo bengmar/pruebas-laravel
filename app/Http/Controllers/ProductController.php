@@ -16,7 +16,7 @@ class ProductController extends Controller
 
         if ($categoria) {
             $query->whereHas('category', function ($q) use ($categoria) {
-                $q->where('slug', $categoria); // Mejor filtrar por slug que por nombre
+                $q->where('name', $categoria); // Nota: Mejor filtrar por slug que por nombre - pendiente crear columna
             });
         }
 
