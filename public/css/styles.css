@@ -94,15 +94,6 @@ footer {
     background-color: var(--color-cuatro);
 }
 
-.item-catalogo {
-    color: var(--color-texto);
-    background-color: var(--color-uno);
-}
-
-.item-catalogo-active {
-    color: var(--color-dos);
-}
-
 /* Inputs */
 .form-control,
 .form-select {
@@ -254,13 +245,22 @@ footer {
 /* ==========================================================================
    NAVBAR
    ========================================================================== */
+   /* item-catalogo compartiendo propiedades con nav-link-custom, para mejor diseño */
+/*.item-catalogo {
+    color: var(--color-texto);
+    background-color: var(--color-uno);
+}
 
+.item-catalogo-active {
+    color: var(--color-dos);
+}
+*/
 .nav-custom {
     background-color: var(--color-uno);
     transition: background-color 0.3s ease;
 }
 
-.nav-link-custom {
+.nav-link-custom, .item-catalogo {
     color: var(--color-texto) !important;
     opacity: 0.8;
     position: relative;
@@ -268,12 +268,15 @@ footer {
 }
 
 .nav-link-custom:hover,
-.nav-link-custom.active {
+.nav-link-custom.active,
+.item-catalogo:hover,
+.item-catalogo-active{
     opacity: 1;
     color: var(--color-dos) !important;
 }
 
-.nav-link-custom.active::after {
+.nav-link-custom.active::after,
+.item-catalogo.active::after {
     content: '';
     display: block;
     width: 100%;
@@ -966,4 +969,13 @@ footer {
 .light .pages-decoration {
     background-color: var(--color-uno);
     border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Este código SOLO se ejecutará en pantallas de 992px o más (Bootstrap LG) - Manejo del menú de Catálogo */
+@media (min-width: 992px) {
+  .nav-item.dropdown .dropdown-menu {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
 }
