@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-public function index()
-{
-    // Asegúrate de que Product esté importado arriba: use App\Models\Product;
-    $ofertas_home = Product::where('on_sale', true)->take(4)->get();
-    $novedades    = Product::latest()->take(4)->get();
-    $mas_vistos   = Product::inRandomOrder()->take(4)->get();
+    public function index()
+    {
+        // Asegúrate de que Product esté importado arriba: use App\Models\Product;
+        $ofertas_home = Product::query()->where('on_sale', true)->take(4)->get();
+        $novedades    = Product::query()->latest()->take(4)->get();
+        $mas_vistos   = Product::query()->inRandomOrder('')->take(4)->get();
 
-    // Verifica que los nombres en compact coincidan exactamente con las variables
-    return view('pages.home', compact('ofertas_home', 'novedades', 'mas_vistos'));
-}
+        // Verifica que los nombres en compact coincidan exactamente con las variables
+        return view('pages.home', compact('ofertas_home', 'novedades', 'mas_vistos'));
+    }
 
     public function terms()
     {
@@ -33,11 +33,13 @@ public function index()
         return view('pages.marketing');
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view('pages.contact');
     }
 
-    public function checkout(){
+    public function checkout()
+    {
         return view('pages.checkout');
     }
 }

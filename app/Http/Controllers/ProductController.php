@@ -2,37 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
-
-    public function index($categoria = null)
+    public function index($categoriaId = null)
     {
-        // El Scope ya aplicó el 'where is_active = true' para todos los controladores
+        // 1. Iniciamos la consulta base cargando la relación para evitar el problema N+1
         $query = Product::with('category');
+        $tituloCategoria = 'Nuestro Catálogo'; // Título por defecto si no hay filtro
 
-        if ($categoria) {
-            $query->whereHas('category', function ($q) use ($categoria) {
-                $q->where('name', $categoria); // Nota: Mejor filtrar por slug que por nombre - pendiente crear columna
-            });
+        if ($categoriaId) {
+            // 2. Buscamos la categoría primero. Si no existe, lanzamos un 404 automáticamente.
+            $categoriaActual = Category::findOrFail($categoriaId);
+
+            // 3. Usamos el operador de fusión de nulidad (??) para el título
+            $tituloCategoria = $categoriaActual->display_title ?? $categoriaActual->name;
+
+            // 4. Filtramos los productos directamente por el ID de la relación
+            $query->where('category_id', $categoriaId);
         }
 
-        $products = $query->get(); //$query->paginate(12); // Es mejor usar paginate que get() si tienes muchos productos
-
-        // El resto de tu lógica de títulos...
-        $nombresCategorias = [
-            'Audio'        => 'Equipos de Audio y Sonido',
-            'Instrumentos' => 'Instrumentos Musicales',
-            'Soportes'     => 'Trípodes y Soportes',
-            'Outlet'       => 'Outlet 🔥',
-            'Fotografia'   => 'Fotografía',
-            'Iluminacion'  => 'Iluminación y Estudio',
-            'Bolsos'       => 'Bolsos y Mochilas'
-        ];
-        $tituloCategoria = $nombresCategorias[$categoria] ?? 'Nuestro Catálogo';
+        // 5. Traemos los productos (recomiendo cambiar get() por paginate(12) en el futuro)
+        $products = $query->get();
+        $categoria = $categoriaId;
 
         return view('pages.catalog', compact('products', 'tituloCategoria', 'categoria'));
     }

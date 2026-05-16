@@ -67,8 +67,9 @@ class ProductForm
                             ) // 'brand' es la relación en el modelo Product, 'name' es la columna en brands
                             ->options(
                                 // Aquí filtramos manualmente para el formulario
-                                Brand::where('active', 1) // O el nombre de tu columna ('is_active', etc.)
-                                    ->pluck('name', 'id')
+                                Brand::query()
+                                    ->where('active', 1) // nombre de la columna ('is_active', etc.)
+                                    ->pluck('name', 'id') // trae solo esos datos, en lugar de todo como lo haría get()
                             )
                             ->searchable()
                             ->preload()

@@ -48,49 +48,34 @@
                     ]) href="{{ route('terms') }}">TÉRMINOS DE USO</a>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('catalog') ? 'active fw-bold' : '' }}"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        CATÁLOGO
-                    </a>
-                    <ul class="dropdown-menu pages-decoration">
-                        <li><a @class(['dropdown-item', 'item-catalogo']) href="{{ route('catalog') }}">VER TODO</a></li>
-                        <li>
-                            <hr class="dropdown-divider ">
-                        </li>
-                        {{-- Categorías --}}
-                        @php
-                            $categorias = [
-                                'Audio',
-                                'Instrumentos',
-                                'Fotografia',
-                                'Iluminacion',
-                                'Bolsos',
-                                'Soportes',
-                                'Outlet',
-                            ];
-                        @endphp
-                        @foreach ($categorias as $cat)
-                            <li>
-                                <a @class([
-                                    'dropdown-item',
-                                    'item-catalogo',
-                                    'item-catalogo-active' => request()->route('categoria') == $cat,
-                                ]) href="{{ route('catalog', $cat) }}">
-                                    {{-- Opcional a operador ternario anidado --}}
-                                    {{ strtoupper(
-                                        match ($cat) {
-                                            'Soportes' => 'TRÍPODES y Soportes',
-                                            'Iluminacion' => 'ILUMINACIÓN y Estudio',
-                                            'Fotografia' => 'FOTOGRAFÍA',
-                                            default => $cat,
-                                        },
-                                    ) }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </li>
+               <li class="nav-item dropdown">
+    <a class="nav-link nav-link-custom dropdown-toggle {{ request()->routeIs('catalog') ? 'active fw-bold' : '' }}"
+        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        CATÁLOGO
+    </a>
+    <ul class="dropdown-menu pages-decoration">
+        <li><a @class(['dropdown-item', 'item-catalogo']) href="{{ route('catalog') }}">VER TODO</a></li>
+        <li><hr class="dropdown-divider"></li>
+
+        {{-- Categorías reales desde la Base de Datos --}}
+        @foreach ($categorias as $categoria)
+            <li>
+                <a @class([
+                    'dropdown-item',
+                    'item-catalogo',
+                    // Si en la URL usas el ID o el slug
+                    'item-catalogo-active' => request()->route('categoria') == $categoria->id,
+                ]) href="{{ route('catalog', $categoria->id) }}">
+
+                    {{-- Imprime el nombre directo de la BD en mayúsculas --}}
+                    {{-- Str::upper($categoria->name) --}}
+                    {{ Str::upper($categoria->display_title) }}
+
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</li>
 
                 <li class="nav-item">
                     <a class="nav-link nav-link-custom {{ request()->routeIs('queries') ? 'active fw-bold' : '' }}"

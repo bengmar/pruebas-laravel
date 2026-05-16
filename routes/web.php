@@ -21,7 +21,7 @@ Route::controller(MainController::class)->group(function(){
     Route::get('/checkout', 'checkout')->name('checkout');
 });
 
-//Rutas de CatalogController
+//Rutas de ProductController
 Route::controller(ProductController::class)->group(function(){
     Route::get('/catalogo/{categoria?}', 'index')->name('catalog');
     Route::get('/producto-detalles/{id}', 'details')->name('product-details');
