@@ -27,9 +27,9 @@ class BrandsTable
                     ->weight('bold'),
 
                 // Contador de productos por marca
-                TextColumn::make('productos_count')
-                    ->label('Productos')
-                    ->counts('productos') // Usa la relación HasMany definida en tu modelo
+                TextColumn::make('products_count') //nombre del método en el modelo Brands + _count que autom. obtiene la cantidad
+                    ->label('Cant. Productos')
+                    ->counts('products') // Usa la relación HasMany definida en tu modelo
                     ->badge()
                     ->color('success'),
 

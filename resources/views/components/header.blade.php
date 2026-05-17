@@ -10,14 +10,16 @@
         {{-- buscador --}}
         <div class="px-4 col-lg-4 col-xl-6 p-2 d-none d-lg-block bd-search position-relative">
             <form class="d-flex" action="{{ route('search') }}" method="GET">
-                <input id="main-search" class="form-control rounded-start-pill" autocomplete="off" type="search" name="query" {{-- El nombre del campo es clave --}}
-                    placeholder="Buscá por marca, categoría o instrumento..." value="{{ request('query') }}">
+                <input id="main-search" class="form-control rounded-start-pill" autocomplete="off" type="search"
+                    name="query" {{-- El nombre del campo es clave --}} placeholder="Buscá por marca, categoría o instrumento..."
+                    value="{{ request('query') }}">
                 {{-- Mantiene el texto después de buscar --}}
                 <button class="btn btn-outline-secondary rounded-end-pill" type="submit">
                     <img src="{{ asset('icons/svg/buscar.svg') }}" alt="buscar" class="icon-adaptive">
                 </button>
             </form>
-            <div id="search-suggestions" class="list-group position-absolute w-100 shadow d-none" style="z-index: 1050; top: 100%;"></div>
+            <div id="search-suggestions" class="list-group position-absolute w-100 shadow d-none"
+                style="z-index: 1050; top: 100%;"></div>
         </div>
 
         {{-- carrito e inicio de sesion --}}
@@ -45,8 +47,8 @@
                 {{-- LO QUE VE EL USUARIO LOGUEADO --}}
                 <div class="d-flex align-items-center me-3">
                     <div class="dropdown">
-                        <a class="d-flex align-items-center nav-link-custom text-decoration-none dropdown-toggle" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="d-flex align-items-center nav-link-custom text-decoration-none dropdown-toggle"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('icons/svg/persona.svg') }}" alt="Usuario" class="icon-adaptive me-2">
                             <div class="d-flex flex-column d-none d-lg-flex text-start" style="line-height: 1.2;">
                                 {{-- Uso el campo first_name --}}
@@ -89,8 +91,8 @@
         </div>
     </div>
 </header>
-@if (session('error'))
+@error('query') {{-- Si la validación de búsqueda falla --}}
     <div class="alert alert-danger border-0 shadow-sm text-center">
-        {{ session('error') }}
+        {{ $message }}
     </div>
-@endif
+@enderror

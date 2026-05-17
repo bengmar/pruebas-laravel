@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function index(SearchRequest $request)
     {
-        $query = trim($request->input('query'));
+        // Código validado ya validado por SearchRequest y con el trim() hecho
+        $query = $request->input('query');
 
-        // 1. Validación de longitud (Mínimo 3 caracteres)
-        if (empty($query) || strlen($query) < 3) {
-            // Si es una petición normal, redirigimos con mensaje
-            if (!$request->ajax()) {
-                return redirect()->back()->with('error', 'Por favor, ingresa al menos 3 caracteres.');
-            }
-            // Si es AJAX, devolvemos un mensaje vacío para no mostrar nada
-            return '';
-        }
-
-        // 2. Consulta unificada (mantenemos tus relaciones)
+        // Consulta unificada
         $resultsQuery = Product::query()
             ->where('products.title', 'LIKE', "%{$query}%")
             ->orWhereHas('brand', function ($q) use ($query) {
@@ -31,9 +23,8 @@ class SearchController extends Controller
                 $q->where('categories.name', 'LIKE', "%{$query}%");
             });
 
-        // 3. Lógica Diferenciada (AJAX vs Normal)
+        // Lógica para AJAX (Sugerencias rápidas)
         if ($request->ajax()) {
-            // Para sugerencias rápidas, limitamos a 5 resultados y solo traemos lo necesario
             $suggestions = $resultsQuery->limit(5)->get();
 
             if ($suggestions->isEmpty()) {
@@ -42,7 +33,6 @@ class SearchController extends Controller
 
             $html = '';
             foreach ($suggestions as $product) {
-                // Ajusta la ruta a la que uses para ver el detalle del producto
                 $url = route('product-details', ['id' => $product->id]);
                 $html .= "
                 <a href='{$url}' class='list-group-item list-group-item-action d-flex align-items-center'>
@@ -56,7 +46,7 @@ class SearchController extends Controller
             return $html;
         }
 
-        // 4. Paginación normal para la vista de resultados completa
+        // Paginación normal para vista completa
         $results = $resultsQuery->paginate(12)->appends(['query' => $query]);
 
         return view('search.results', compact('results', 'query'));

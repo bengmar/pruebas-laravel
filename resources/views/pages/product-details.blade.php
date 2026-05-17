@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot name='title'>{{ $product['title'] }}</x-slot>
+    <x-slot name='title'>{{ $product->title }}</x-slot>
     <div class="container py-5">
         {{-- Navegación superior adaptativa --}}
         <div class="d-flex justify-content-between align-items-center mb-4">

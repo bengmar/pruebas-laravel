@@ -12,8 +12,8 @@ class Brand extends Model
         'active',
     ];
 
-    //una categoria puede tener muchos productos
-    public function productos(): HasMany{
+    //una marca puede tener muchos productos
+    public function products(): HasMany{
         return $this->hasMany(Product::class, 'brand_id');
     }
 }

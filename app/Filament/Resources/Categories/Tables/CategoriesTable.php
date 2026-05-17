@@ -33,9 +33,9 @@ class CategoriesTable
                     ->searchable()
                     ->sortable(),
                 // Conteo de productos (Muestra cuántos productos tiene cada categoría)
-                TextColumn::make('productos_count')
+                TextColumn::make('products_count')
                     ->label('Cant. Productos')
-                    ->counts('productos') // Usa el nombre de la relación HasMany de tu modelo
+                    ->counts('products') // Usa el nombre de la relación HasMany de tu modelo
                     ->badge()
                     ->color('info')
                     ->alignCenter(),

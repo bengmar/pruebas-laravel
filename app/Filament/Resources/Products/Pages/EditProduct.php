@@ -20,7 +20,7 @@ class EditProduct extends EditRecord
                 ->label('Ver en Tienda')
                 ->color('gray')
                 ->icon('heroicon-o-arrow-top-right-on-square')
-                ->url(fn (Product $record): string => ProductResource::getUrl('view', ['record' => $record]))
+                ->url(fn (): string => route('product-details', ['id' => $this->record->id]))
                 ->openUrlInNewTab(),
 
             DeleteAction::make(),
