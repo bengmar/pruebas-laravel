@@ -27,9 +27,9 @@ class UsersTable
                     ->label('Fecha de verif. de correo')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('role_id')
-                    ->label('ID De Rol')
-                    ->numeric()
+                TextColumn::make('role.name')
+                    ->label('Rol')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Fecha de creación')

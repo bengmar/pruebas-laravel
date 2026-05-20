@@ -22,7 +22,7 @@ class User extends Authenticatable implements FilamentUser
     public function canAccessPanel(Panel $panel): bool
     {
         // Solo el role_id 1 tiene permiso de entrar a /admin
-        return $this->role_id === 1;
+        return $this->role && $this->role->name === 'admin';
     }
     /**
      * Get the attributes that should be cast.
@@ -40,7 +40,7 @@ class User extends Authenticatable implements FilamentUser
     public function role(){
         return $this->belongsTo(Role::class);
     }
-    
+
     //Necesario ya que filament usa 'name' y en la bd no uso ese
     public function getNameAttribute():string
     {
