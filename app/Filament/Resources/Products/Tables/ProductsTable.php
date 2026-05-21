@@ -13,6 +13,7 @@ use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsTable
 {
@@ -20,11 +21,14 @@ class ProductsTable
     {
         return $table
             ->columns([
+
+
                 ImageColumn::make('image_1')
-                ->url(fn ($record)=>asset($record->image_1))
-                ->getStateUsing(fn($record)=>asset($record->image_1))
-                ->circular()
-                ->label('Imagen'),
+                    ->label('Imagen')
+                    ->disk('public') // <--- Le decimos a Filament que busque en el disco public
+                    ->circular()
+                    // Si necesitas que al hacer clic abra la URL de la imagen en grande:
+                    ->url(fn($record) => $record->image_1 ? Storage::url($record->image_1) : null, shouldOpenInNewTab: true),
 
                 // Información principal
                 TextColumn::make('title')
@@ -47,8 +51,9 @@ class ProductsTable
 
                 // Precios y Stock
                 TextColumn::make('price')
+                    ->prefix('$ ')
                     ->label('Precio')
-                    ->money('ARS') // Cambia a tu moneda local
+                    ->money('ARS') // Moneda local
                     ->sortable(),
 
                 TextColumn::make('stock')

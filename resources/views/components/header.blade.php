@@ -60,7 +60,7 @@
                         <ul class="dropdown-menu shadow">
                             <li>
                                 <a class="dropdown-item"
-                                    href="{{ auth()->user()->role_id === 1 ? url('/admin') : url('/panel-usuario') }}">
+                                    href="{{ auth()->user()->role_id === 1 ? url('/admin') : url('/panel-cliente') }}">
                                     Ir al Panel
                                 </a>
                             </li>

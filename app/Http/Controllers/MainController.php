@@ -42,4 +42,8 @@ class MainController extends Controller
     {
         return view('pages.checkout');
     }
+    public function userPanel()
+    {
+        return view('pages.user-panel');
+    }
 }
