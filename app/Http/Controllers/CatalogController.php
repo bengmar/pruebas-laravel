@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+
+class CatalogController extends Controller
+
 {
 
     public function index($categoriaId = null)

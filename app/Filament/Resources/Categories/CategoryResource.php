@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Categories;
 use App\Filament\Resources\Categories\Pages\CreateCategory;
 use App\Filament\Resources\Categories\Pages\EditCategory;
 use App\Filament\Resources\Categories\Pages\ListCategories;
+use App\Filament\Resources\Categories\RelationManagers\ProductsRelationManager;
 use App\Filament\Resources\Categories\Schemas\CategoryForm;
 use App\Filament\Resources\Categories\Tables\CategoriesTable;
 use App\Models\Category;
@@ -23,19 +24,9 @@ class CategoryResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function form(Schema $form): Schema
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-
-                TextInput::make('name') // Debe ser 'name' igual que en la DB
-                    ->required()
-                    ->maxLength(100),
-                TextInput::make('display_title')
-                    ->label('Título Largo / Comercial')
-                    ->placeholder('Ej: Equipos de Audio y Sonido')
-                    ->maxLength(255),
-            ]);
+        return CategoryForm::configure($schema);
     }
 
     public static function table(Table $table): Table
@@ -46,7 +37,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ProductsRelationManager::class,
         ];
     }
 

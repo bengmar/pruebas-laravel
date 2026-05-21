@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Categories\Schemas;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class CategoryForm
@@ -9,8 +10,15 @@ class CategoryForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                //
+            ->schema([
+
+                TextInput::make('name') // Debe ser 'name' igual que en la DB
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('display_title')
+                    ->label('Título Largo / Comercial')
+                    ->placeholder('Ej: Equipos de Audio y Sonido')
+                    ->maxLength(255),
             ]);
     }
 }

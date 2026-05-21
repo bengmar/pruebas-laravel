@@ -1,6 +1,10 @@
 <x-layout>
     <x-slot name="title">Principal</x-slot>
-
+    @if (session('success'))
+        <div class="alert alert-success border-0 shadow-sm text-center">
+            {{ session('success') }}
+        </div>
+    @endif
     {{-- Carrusel Adaptativo --}}
     <div id="carouselExampleIndicators" class="carousel slide mb-3 shadow-sm custom-carousel" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -46,7 +50,8 @@
     @foreach ($secciones as $seccion)
         <div class="container pt-2 pb-5">
             {{-- Título de sección adaptativo: quitamos text-white y border-secondary --}}
-            <h3 class="mb-4 text-center color-adaptativo border-bottom border-ui-adaptativa pb-3 text-uppercase fw-bold" style="letter-spacing: 1px;">
+            <h3 class="mb-4 text-center color-adaptativo border-bottom border-ui-adaptativa pb-3 text-uppercase fw-bold"
+                style="letter-spacing: 1px;">
                 <i class="bi {{ $seccion['icon'] }} texto-rojo me-2"></i> {{ $seccion['titulo'] }}
             </h3>
             <div class="row justify-content-center g-4 px-2">

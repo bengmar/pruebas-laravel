@@ -3,11 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SignUpRequest;
+use App\Models\Rol;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use SweetAlert2\Laravel\Swal;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
+    //FUNCIONES ASOCIADAS AL FORMULARIO DE REGISTRO Y CREACIÓN DE CUENTA
+    public function create()
+    {
+        return view('auth.signup');
+    }
+    public function store(SignUpRequest $request)
+    {
+
+        $validated = $request->validated();
+
+        // Aseguramos que el role_id sea 2 y la contraseña esté encriptada
+        $validated['role_id'] = 2;
+        $validated['password'] = Hash::make($validated['password']);
+
+        // Creando el usuario
+        User::create($validated);
+        Swal::success([
+            'title' => '!Hecho!',
+            'text' => '¡La cuenta ha sido creada'
+        ]);
+        return redirect()->back()->with('success', 'Se ha creado la cuenta de usuario exitosamente');
+    }
+
+    //FUNCIONES ASOCIADAS AL LOGIN
     public function show()
     {
         return view('auth.login');
@@ -49,6 +78,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // 4. Redirigimos a la página principal o al login
-        return redirect('/')->with('success', 'Sesión cerrada correctamente.');
+        return redirect()->route('home')->with('success', 'Sesión cerrada correctamente.');
     }
 }
