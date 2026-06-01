@@ -104,3 +104,6 @@ Desarrollado con vistas **Blade** tradicionales y controladores optimizados para
 ```
 
 5. Iniciamos servidor
+```bash
+    php artisan serve
+```
