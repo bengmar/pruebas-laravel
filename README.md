@@ -1,58 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SoundWave Store 🎶
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Catálogo web y e-commerce de instrumentos y otros productos musicales construido con Laravel y Filament.
 
-## About Laravel
+La plataforma cuenta con un frontend público donde los usuarios pueden visualizar los detalles de la empresa, el modelo de negocio, información de contacto, explorar productos disponibles y gestionar por completo sus perfiles (carritos de compra y edición de datos). Además, incluye un panel de administración avanzado para delegar todas las gestiones operativas del sitio.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Características Principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Frontend Público Interactivo:** Navegación fluida por catálogo, carrito de compras manual y pasarela conceptual de órdenes.
+* **Panel Administrativo Robusto:** Gestión interna optimizada mediante componentes reactivos para el control de inventario y usuarios.
+* **Feedback Dinámico:** Experiencia de usuario enriquecida con alertas interactivas y animaciones fluidas.
+* **Seguridad Avanzada:** Arquitectura protegida mediante middlewares personalizados y validaciones centralizadas.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Tecnologías Utilizadas (Stack)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Laravel](https://img.shields.io/badge/Laravel_13-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP_8.4-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![FilamentPHP](https://img.shields.io/badge/FilamentPHP-EBB304?style=for-the-badge&logo=laravel&logoColor=black)
+![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* **Backend:** Laravel 13 & PHP 8.4
+* **Panel de Administración:** FilamentPHP
+* **Base de Datos:** MariaDB
+* **Frontend:** Blade nativo de Laravel
+* **Librerías de UI & Efectos:** SweetAlert2 (alertas dinámicas) y Animate.css (animaciones del logo)
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 📂 Estructura y Arquitectura del Proyecto
 
+El sistema se divide claramente en dos grandes módulos arquitectónicos:
+
+### A. Panel de Administración (`/admin`)
+Toda la gestión interna está delegada a **Filament**, el cual facilita el armado de formularios, tablas y vistas mediante componentes reutilizables y reactivos conectados a los modelos:
+
+* **Marcas:** CRUD con visualización general, creación, edición, desactivación (oculta la disponibilidad de la marca al cargar productos) y eliminación restringida (solo posible si no hay productos asociados).
+* **Categorías:** CRUD completo con **reasignación automática**: si una categoría se elimina, sus productos asociados pasan automáticamente a la categoría por defecto *"Otros"*.
+* **Productos:** CRUD completo con soporte de **Soft Deletes**, permitiendo la restauración de productos eliminados.
+* **Usuarios:** Gestión de cuentas registradas mediante un CRUD completo con Soft Deletes y reglas específicas de edición de seguridad.
+* **Consultas:** Bandeja de entrada centralizada para los mensajes enviados desde el frontend. Permite visualización, cambio de estado (leído/pendiente) y eliminación.
+
+### B. Sitio Frontend (Público)
+Desarrollado con vistas **Blade** tradicionales y controladores optimizados para la experiencia del cliente:
+
+* **Navegación y Vistas:** Controladores encargados de renderizar el inicio, el catálogo completo de productos, detalles de la empresa y la sección de contacto.
+* **Autenticación:** Sistema completo de registro y logueo seguro de usuarios.
+* **Perfil de Usuario:** Panel privado para el cliente con un controlador dedicado a la actualización de sus datos personales.
+* **Carrito de Compras:** Lógica manual implementada para la selección, acumulación, persistencia y gestión de los instrumentos que el usuario desea adquirir.
+* **Envío de Consultas:** Controlador especializado en recibir los formularios de contacto y derivarlos en tiempo real a la bandeja de Filament.
+
+---
+
+## 🔒 Lógica de Negocio y Seguridad
+
+* **Middleware de Usuario:** Se implementó un middleware personalizado asociado al modelo `User` para proteger rutas específicas y gestionar de forma estricta los accesos y permisos dentro del flujo de compra y edición de perfil.
+* **Form Requests Dedicados:** Las validaciones de datos están centralizadas y completamente aisladas de los controladores utilizando clases `Request` de Laravel. Esto mantiene el código limpio (*Clean Code*) y asegura la integridad en procesos críticos como:
+  * Formulario de consultas de contacto.
+  * Autenticación (Login y Registro).
+  * Actualización de perfil de usuario.
+
+---
+
+## 🎨 Interfaz de Usuario (UI) y Estilos
+
+* **SweetAlert2:** Integrado para proporcionar un feedback interactivo, elegante y amigable al usuario tras realizar acciones clave (ej. confirmación de registro de cuenta, envío exitoso de consultas o alertas del carrito).
+* **Animate.css:** Utilizado de forma precisa para añadir dinamismo visual al logo principal de la plataforma, mejorando la identidad visual del sitio.
+
+---
+
+## 💻 Requisitos e Instalación
+
+### Requisitos previos
+* PHP >= 8.4
+* Composer
+* Node.js & NPM
+* Servidor MariaDB
+
+### Paso a paso para entorno local
+
+## 🛠️ Instalación
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/soundwave-store.git
+   cd soundwave-store
+   ```
+
+2. Configurar variables de entorno en `.env` (Copias el `.env.example` y agregas tus datos).
+
+3. Instalar Dependencias y generamos clave
+    ```bash
+    composer install
+    npm install
+    php artisan key:generate
+    ```
+
+4. Ejecutamos migración
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+    php artisan migrate:fresh --seed 
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. Iniciamos servidor
