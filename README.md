@@ -90,6 +90,16 @@ Desarrollado con vistas **Blade** tradicionales y controladores optimizados para
    ```
 
 2. Configurar variables de entorno en `.env` (Copias el `.env.example` y agregas tus datos).
+   DB_CONNECTION=mariadb
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=db_bengochea_aguilar
+   DB_USERNAME=root
+   DB_PASSWORD=
+   APP_URL=http://localhost:8000
+   APP_LOCALE=es
+   APP_FALLBACK_LOCALE=es
+   APP_FAKER_LOCALE=es_AR
 
 3. Instalar Dependencias y generamos clave
     ```bash
