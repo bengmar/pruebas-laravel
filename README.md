@@ -90,7 +90,7 @@ Desarrollado con vistas **Blade** tradicionales y controladores optimizados para
    ```
 
 2. Configurar variables de entorno en `.env` (Copias el `.env.example` y agregas tus datos).
-   ** Ajustes básicos .env **
+   * ** Ajustes básicos .env **
    * DB_CONNECTION=mariadb
    * DB_HOST=127.0.0.1
    * DB_PORT=3306
